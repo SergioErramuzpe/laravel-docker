@@ -15,7 +15,6 @@ use Tests\TestCase;
 class SellCoinControllerTest extends TestCase
 {
     use RefreshDatabase;
-
     private SellCoinController $sellCoinController;
 
     /**

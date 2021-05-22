@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Http\Controllers;
-
 
 use App\Errors\Errors;
 use App\Services\CoinBuy\CoinBuyerService;
@@ -11,7 +9,6 @@ use Illuminate\Http\Response;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controller as BaseController;
-
 
 class CoinBuyerController extends BaseController {
 
@@ -22,7 +19,6 @@ class CoinBuyerController extends BaseController {
         $this->coinBuyerService = $coinBuyerService;
     }
 
-
     public function buyCoin (Request $request) : JsonResponse
     {
         if (($request->has('coin_id') === false) || ($request->has('wallet_id') === false) || ($request->has('amount_usd') === false)) {
@@ -32,7 +28,7 @@ class CoinBuyerController extends BaseController {
         }
 
         try {
-            $this->coinBuyerService->execute($request->input('coin_id'),$request->input('wallet_id'),$request->input('amount_usd'));
+            $this->coinBuyerService->execute($request->get('coin_id'),$request->get('wallet_id'),$request->get('amount_usd'));
             return response()->json([
                 Response::HTTP_OK => 'successful operation'
             ], Response::HTTP_OK);
