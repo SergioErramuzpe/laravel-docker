@@ -19,7 +19,6 @@
         "friendsofphp/php-cs-fixer": "@stable",
         "symfony/console": "@stable",
         "symfony/process": "@stable",
-      "ext-http": "*",
       "ext-json": "*"
     },
     "require-dev": {
