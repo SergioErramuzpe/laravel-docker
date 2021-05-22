@@ -21,7 +21,6 @@ jobs:
       - name: Install dependencies
         run: cd src;
              composer install;
-             composer update;
 
       - name: Generate key
         run:  cp .env src;
