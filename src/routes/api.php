@@ -1,9 +1,14 @@
 <?php
 
+use App\DataSource\API\CoinDataSource;
+use App\DataSource\API\CoinLoreCoinDataSource;
+use App\Http\Controllers\coinBuyerController;
 use App\Http\Controllers\GetUserController;
+use App\Http\Controllers\GetWalletBalanceController;
+use App\Http\Controllers\GetWalletCryptocurrenciesController;
 use App\Http\Controllers\OpenWalletController;
+use App\Http\Controllers\SellCoinController;
 use App\Http\Controllers\StatusController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,9 +22,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::middleware('auth:api')->get('/user', function (Request $request) {
-//    return $request->user();
-//});
+app()->bind(CoinDataSource::class, CoinLoreCoinDataSource::class);
 
 Route::get(
     '/status',
@@ -33,5 +36,25 @@ Route::get(
 
 Route::post(
     '/wallet/open',
-    'OpenWalletController@openWallet'
+    [OpenWalletController::class, 'openWallet']
+);
+
+Route::get(
+    '/wallet/{wallet_id}',
+    [GetWalletCryptocurrenciesController::class, 'getWalletCryptocurrencies']
+);
+
+Route::get(
+    '/wallet/{wallet_id}/balance',
+    [GetWalletBalanceController::class, 'getWalletBalance']
+);
+
+Route::post(
+    '/coin/buy',
+    [CoinBuyerController::class, 'buyCoin']
+);
+
+Route::post(
+    '/coin/sell',
+    [SellCoinController::class, 'sellCoin']
 );

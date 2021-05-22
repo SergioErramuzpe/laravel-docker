@@ -1,28 +1,18 @@
 <?php
 
-
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class Wallet
+class Wallet extends Model
 {
-    private String $userId;
-    private String $id;
+    use HasFactory;
 
-    public function __construct(String $userId, String $walletId){
-        $this->userId = $userId;
-        $this->id = $walletId;
-    }
+    protected $fillable = ['id', 'user_id'];
 
-    public function getUserId(): string
+    public function coins()
     {
-        return $this->userId;
+        return $this->hasMany(Coin::class);
     }
-
-    public function getId(): string
-    {
-        return $this->id;
-    }
-
-
 }
