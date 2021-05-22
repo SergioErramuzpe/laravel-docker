@@ -29,7 +29,6 @@ class CoinBuyerControllerTest extends TestCase
         ]);
 
         $response->assertStatus(Response::HTTP_BAD_REQUEST)->assertJson([Response::HTTP_BAD_REQUEST => Errors::BAD_REQUEST_ERROR]);
-
     }
 
     /**
@@ -37,7 +36,6 @@ class CoinBuyerControllerTest extends TestCase
      **/
     public function getsHttpNotFoundWhenWalletWasNotFound ()
     {
-
         $response = $this->postJson('api/coin/buy', [
             'coin_id' => '1',
             'wallet_id' => 0,
@@ -81,7 +79,6 @@ class CoinBuyerControllerTest extends TestCase
      **/
     public function getsSuccessfulOperationWhenWalletIsFoundButNotCoin ()
     {
-
         $this->app->bind(CoinDataSource::class, FakeCoinLoreDataSource::class);
 
         $wallet = Wallet::factory()->create()->first();

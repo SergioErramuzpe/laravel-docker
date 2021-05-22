@@ -87,7 +87,7 @@ class EloquentCoinDataSourceTest extends TestCase
         $walletId = 'invalidWallet';
         $coinId = 'invalidCoinId';
 
-        $this->expectException(CannotCreateACoinException::class);
+        $this->expectException(CannotUpdateACoinException::class);
 
         $this->eloquentCoinDataSource->updateCoin($walletId, $coinId,1,1);
     }
